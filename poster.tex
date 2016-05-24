@@ -28,12 +28,66 @@
         \begin{column}{\onecolwid}
         % Abstract block
         \begin{block}{Abstract}
-          123
+          Sparse linear system solver is one of the core of scientific computing.
+          As the scale of problem increases, to solve sparse linear systems efficiently
+          is necessary.
+          In recent computer architecture, the frequency of computation core is bounded
+          by physical limitations, thus current design of computatation unit as CPU and
+          GPU use multiple cores to improve the performance.
+          Hierarchical Schur method expolits the block structure of multilevel nested
+          dissection reordered sparse linear system and decompose the direct matrix
+          factorization scheme into concurrent subproblems. In each subproblems we
+          properly applied different techniques for lower level parallelism. Moreover
+          by analyzing the computation cost of each subproblems, it is able to
+          distribute the computation load to different resources to improve overall
+          scalability.
         \end{block}
         % Introduction block
         \begin{block}{Introduction}
-          123
+          \paragraph{\textbf{Why Solving $Ax=b$?}}
+          \begin{itemize}
+            \item Important kernel in scientific computing
+            \item Widely used in real world applications
+            \begin{itemize}
+              \item Weather prediction
+              \item Nano-structure optimization design 
+              \item Renewable energy
+              \item Biomedicine
+            \end{itemize}
+          \end{itemize}
+          \paragraph{\textbf{How to solve $Ax=b$?}}
+          \begin{itemize}
+            \item Direct method: LU (Cholesky) factorization
+          \end{itemize}
+          \paragraph{\textbf{Difficulties}}
+          \begin{itemize}
+            \item High computation cost (BLAS Level 3)
+            \item Hard to parallelize
+          \end{itemize}
+          \paragraph{\textbf{Our solutions}}
+          \begin{itemize}
+            \item Use GPU to accelerate BLAS-3 operations
+            \item Improving parallel scalability by combining
+            \begin{itemize}
+              \item Nested Dissection Reordering
+              \item Schur Complement Method
+            \end{itemize}
+          \end{itemize}
         \end{block}
+
+        % Nested dissection block
+          \begin{block}{Nested Dissection}
+            \begin{itemize}
+              \item A graph based algorithm for matrix reorder
+              \item Apply to the graph which
+              \begin{itemize}
+                \item Vertices are correspond to matrix rows
+                \item Edges are correspond to matrix non-zeros
+              \end{itemize}
+            \end{itemize}
+            \includegraphics[0.8\onecolwid]{./ND_Example.pdf}
+          \end{block}
+      % End of first column
       \end{column}
 
       \begin{column}{\sepwid}\end{column}
@@ -41,8 +95,55 @@
       % Second column
       \begin{column}{\onecolwid}
         % Algorithm block
-        \begin{block}{Algorithm}
-          123
+        \begin{block}{Hierarchical Schur Method}
+          \paragraph{\textbf{Schur Complement Method}}
+          \begin{itemize}
+            \item Designed for matrices of this form
+              \begin{equation*}
+                A = \left[
+                \begin{array}{ccc}
+                  A_{11} &      0 & A_{13} \\
+                       0 & A_{22} & A_{23} \\
+                  A_{31} & A_{32} & A_{33}
+                \end{array}
+                \right]
+              \end{equation*}
+            \item By defining Schur’s complement $S$ as
+              \begin{equation*}
+                S = A_{33} - A_{31}A^{-1}_{11}A_{13} - A_{32}A^{-1}_{22}A_{23}
+              \end{equation*}
+            \item $A$ can be factorized as following
+              $$
+                A=
+                \left[
+                \begin{array}{ccc}
+                                  I &                 0 & 0 \\
+                                  0 &                 I & 0 \\
+                  A_{31}A^{-1}_{11} & A_{32}A^{-1}_{22} & I
+                \end{array}
+                \right]
+                \left[
+                  \begin{array}{ccc}
+                    A_{11} &      0 & 0 \\
+                         0 & A_{22} & 0 \\
+                         0 &      0 & S
+                  \end{array}
+                \right]
+                \left[
+                \begin{array}{ccc}
+                  I & 0 & A^{-1}_{11}A_{13} \\
+                  0 & I & A^{-1}_{22}A_{23} \\
+                  0 & 0 &                 I
+                \end{array}
+                \right]
+              $$
+            \item $A^{-1}_{11}$ and $A^{-1}_{22}$ can be computed \textbf{in parallel}
+          \end{itemize}
+
+          \paragraph{\textbf{Hierarchical Schur Method}}
+
+
+          \paragraph{\textbf{Algorithm by Example}}
         \end{block}
       \end{column}
       
