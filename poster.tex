@@ -8,10 +8,10 @@
 \newlength{\onecolwid}
 \newlength{\twocolwid}
 \newlength{\threecolwid}
-\setlength{\sepwid}{0.022\paperwidth}
+\setlength{\sepwid}{0.016\paperwidth}
 \setlength{\onecolwid}{0.304\paperwidth}
-\setlength{\twocolwid}{0.630\paperwidth}
-\setlength{\threecolwid}{0.956\paperwidth}
+\setlength{\twocolwid}{0.624\paperwidth}
+\setlength{\threecolwid}{0.944\paperwidth}
 \setlength{\topmargin}{-1in}
 \usetheme{I6dv}
 \usepackage{exscale}
@@ -32,15 +32,8 @@
           As the scale of problem increases, to solve sparse linear systems efficiently
           is necessary.
           In recent computer architecture, the frequency of computation core is bounded
-          by physical limitations, thus current design of computatation unit as CPU and
+          by physical limitations, thus current design of computation unit as CPU and 
           GPU use multiple cores to improve the performance.
-          Hierarchical Schur method expolits the block structure of multilevel nested
-          dissection reordered sparse linear system and decompose the direct matrix
-          factorization scheme into concurrent subproblems. In each subproblems we
-          properly applied different techniques for lower level parallelism. Moreover
-          by analyzing the computation cost of each subproblems, it is able to
-          distribute the computation load to different resources to improve overall
-          scalability.
         \end{block}
         % Introduction block
         \begin{block}{Introduction}
@@ -76,27 +69,19 @@
         \end{block}
 
         % Nested dissection block
-          \begin{block}{Nested Dissection}
+        \begin{block}{Nested Dissection}
+          \begin{itemize}
+            \item A graph based algorithm for matrix reorder
+            \item Apply to the graph which
             \begin{itemize}
-              \item A graph based algorithm for matrix reorder
-              \item Apply to the graph which
-              \begin{itemize}
-                \item Vertices are correspond to matrix rows
-                \item Edges are correspond to matrix non-zeros
-              \end{itemize}
+              \item Vertices are correspond to matrix rows
+              \item Edges are correspond to matrix non-zeros
             \end{itemize}
-            \includegraphics[0.8\onecolwid]{./ND_Example.pdf}
-          \end{block}
-      % End of first column
-      \end{column}
+          \end{itemize}
+          \includegraphics{./ND_Example.pdf}
+        \end{block}
 
-      \begin{column}{\sepwid}\end{column}
-
-      % Second column
-      \begin{column}{\onecolwid}
-        % Algorithm block
-        \begin{block}{Hierarchical Schur Method}
-          \paragraph{\textbf{Schur Complement Method}}
+        \begin{block}{Schur's Complement Method}
           \begin{itemize}
             \item Designed for matrices of this form
               \begin{equation*}
@@ -113,7 +98,8 @@
                 S = A_{33} - A_{31}A^{-1}_{11}A_{13} - A_{32}A^{-1}_{22}A_{23}
               \end{equation*}
             \item $A$ can be factorized as following
-              $$
+              \small
+              \begin{equation*}
                 A=
                 \left[
                 \begin{array}{ccc}
@@ -136,14 +122,32 @@
                   0 & 0 &                 I
                 \end{array}
                 \right]
-              $$
+              \end{equation*}
+              \normalsize
             \item $A^{-1}_{11}$ and $A^{-1}_{22}$ can be computed \textbf{in parallel}
           \end{itemize}
+        \end{block}
+      % End of first column
+      \end{column}
 
+      \begin{column}{\sepwid}\end{column}
+
+      % Second column
+      \begin{column}{\onecolwid}
+        % Algorithm block
+        \begin{block}{Hierarchical Schur Method}
           \paragraph{\textbf{Hierarchical Schur Method}}
-
+          \begin{itemize}
+            \item Considering a nested dissection reordered matrix as following, defining the terms as in the figure
+          \end{itemize}
+          \vskip1ex
+          \includegraphics[width=0.95\onecolwid]{./ND_Blocks.pdf}
 
           \paragraph{\textbf{Algorithm by Example}}
+          \vskip1ex
+          \includegraphics[width=0.95\onecolwid]{./Example_1.pdf} \\
+          \includegraphics[width=0.98\onecolwid]{./Example_2.pdf} \\
+
         \end{block}
       \end{column}
       
@@ -151,13 +155,56 @@
       
       % Third column
       \begin{column}{\onecolwid}
+        % Implementation
+        \begin{block}{Implementation}
+          \paragraph{\textbf{Key Features}}
+            \begin{itemize}
+              \item Designed for Multi-Node GPU Cluster
+              \item User Friendly Interfaces
+              \begin{itemize}
+                \item Header Only Library, 100\% Portable
+              \end{itemize}
+              \item Good Extensibility and Maintainability
+              \begin{itemize}
+                \item Object Oriented Design with Modern C++11
+                \item Using CppUnit Test Framework
+              \end{itemize}
+            \end{itemize}
+        \end{block}
+
         % Results block
         \begin{block}{Results}
+          
+          \paragraph{\textbf{Test Environment}}
+          \begin{itemize}
+            \item Deep Computing Cluster
+            \begin{itemize}
+              \item Intel Xeon E5 2667 v2 3.3GHz * 2
+              \item NVIDIA K40m GPU * 2
+            \end{itemize}
+          \end{itemize}
+
+          \paragraph{\textbf{Test Problems}}
+          \begin{itemize}
+            \item Symmetric Positive Definite Matrices
+            \item Dimension from XXX to XXX
+            \item 2 Dimensional Poisson Problems
+          \end{itemize}
+
+          \paragraph{\textbf{Factorization Time}} \\
           123
+
+          \paragraph{\textbf{Overall Scalability}} \\
+          123
+
         \end{block}
         % Conclusion block
         \begin{block}{Conclusion}
-          123
+          \begin{itemize}
+            \item 123
+            \item 123
+            \item 123
+          \end{itemize}
         \end{block}
       \end{column}
 

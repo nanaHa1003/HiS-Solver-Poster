@@ -39,7 +39,7 @@
 % block environment
 \setbeamercolor*{block body}{bg=white,fg=black}
 \setbeamercolor*{block title}{fg=i6colorblockfg,bg=i6colorblockbg}
-\setbeamerfont{block title}{size=\large,series=\bf}
+\setbeamerfont{block title}{size=\LARGE,series=\bf}
 
 % example environment
 \setbeamercolor*{example title}{fg=white,bg=i6colorscheme1}
@@ -68,8 +68,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setbeamertemplate{block begin}{
-  \vskip.75ex
-  \begin{beamercolorbox}[leftskip=1cm,colsep*=.75ex]{block title}%
+  \vskip1ex
+  \begin{beamercolorbox}[leftskip=3mm,colsep*=.75ex]{block title}%
     \usebeamerfont*{block title}\insertblocktitle
   \end{beamercolorbox}%
   {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
@@ -87,25 +87,26 @@
 
   \begin{beamercolorbox}[wd=\paperwidth]{headline}
     \begin{columns}[T]
-      \begin{column}{.02\paperwidth}
+      \begin{column}{.03\paperwidth}
       \end{column}
-      \begin{column}{.07\paperwidth}
-        \begin{center}
-          %\includegraphics[width=.6\linewidth]{logos/i6-hks44}
-        \end{center}
-        \vskip1ex
-      \end{column}
-      \begin{column}{.675\paperwidth}
+      %\begin{column}{.07\paperwidth}
+      %  \begin{center}
+      %    %\includegraphics[width=.6\linewidth]{logos/i6-hks44}
+      %  \end{center}
+      %  \vskip1ex
+      %\end{column}
+      \begin{column}{.75\paperwidth}
         \vskip4ex
-        \raggedleft
-        \usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[1ex]}
-        \usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[1ex]}
-        \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}     
+        \raggedright
+        %\center
+        \usebeamercolor{title in headline}{\color{fg}\textbf{\huge{\inserttitle}}\\[4ex]}
+        \usebeamercolor{author in headline}{\color{fg}\LARGE{\insertauthor}\\[1ex]}
+        \usebeamercolor{institute in headline}{\color{fg}\LARGE{\insertinstitute}\\[1ex]}     
       \end{column}
-      \begin{column}{.25\paperwidth}
+      \begin{column}{.12\paperwidth}
         \vskip1cm
         \begin{center}
-          \includegraphics[width=.33\linewidth]{NTU_logo}
+          \includegraphics[width=.12\paperwidth]{NTU_logo}
         \end{center}
         \vskip1.5cm
       \end{column}
@@ -113,20 +114,6 @@
       \end{column}
     \end{columns}
   \end{beamercolorbox}
-  
-%%      \begin{beamercolorbox}[sep=0.1cm,wd=.1\paperwidth,center]{logo in headline}
-%%        \vskip2ex
-%%      \end{beamercolorbox}  
-%%      \begin{beamercolorbox}[sep=1cm,wd=.7\paperwidth]{headline}
-%%        \usebeamercolor{title in headline}{\raggedright\color{fg}\textbf{\LARGE{\inserttitle}}\\[1ex]}
-%%        \usebeamercolor{author in headline}{\raggedright\color{fg}\large{\insertauthor}\\[1ex]}
-%%        \usebeamercolor{institute in headline}{\raggedright\color{fg}\large{\insertinstitute}\\[1ex]}     
-%%      \end{beamercolorbox}%
-%%      \begin{beamercolorbox}[sep=0.1cm,wd=.18\paperwidth,center]{logo in headline}
-%%        \includegraphics[height=5cm]{logos/rwth-hks44}
-%%        \vskip2ex
-%%      \end{beamercolorbox}  
-%%    \end{beamercolorbox}
   
   \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
     \rule{0pt}{2pt}
@@ -140,7 +127,7 @@
   \end{beamercolorbox}
   
   \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{footline}%
-    Institute of Applied Mathematical Sciences  - National Taiwan University - \hfill Mail: \texttt{r02246011@ntu.edu.tw} \hfill
+    %Institute of Applied Mathematical Sciences - National Taiwan University -\hfill
     \vskip1ex
   \end{beamercolorbox}
 
@@ -152,11 +139,3 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \mode<all>
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "poster"
-%%% TeX-PDF-mode: t
-%%% End: 
