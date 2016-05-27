@@ -30,10 +30,8 @@
         \begin{block}{Abstract}
           Sparse linear system solver is one of the core of scientific computing.
           As the scale of problem increases, to solve sparse linear systems efficiently
-          is necessary.
-          In recent computer architecture, the frequency of computation core is bounded
-          by physical limitations, thus current design of computation unit as CPU and 
-          GPU use multiple cores to improve the performance.
+          is necessary. In this research we developed a high performance direct linear
+          solver for multicore cluster with GPU accelerator.
         \end{block}
         % Introduction block
         \begin{block}{Introduction}
@@ -142,12 +140,18 @@
           \end{itemize}
           \vskip1ex
           \includegraphics[width=0.95\onecolwid]{./ND_Blocks.pdf}
+          \vskip1ex
 
           \paragraph{\textbf{Algorithm by Example}}
           \vskip1ex
-          \includegraphics[width=0.95\onecolwid]{./Example_1.pdf} \\
-          \includegraphics[width=0.98\onecolwid]{./Example_2.pdf} \\
-
+          \ \ \ \includegraphics[width=0.9\onecolwid]{./Example_1.pdf} \\
+          \vskip1ex
+          \includegraphics[width=\onecolwid]{./Example_2.pdf} \\
+          \vskip1ex
+          \includegraphics[width=\onecolwid]{./Example_3.pdf} \\
+          \vskip1ex
+          \includegraphics[width=\onecolwid]{./Example_4.pdf} \\
+          \vskip1ex
         \end{block}
       \end{column}
       
@@ -159,10 +163,16 @@
         \begin{block}{Implementation}
           \paragraph{\textbf{Key Features}}
             \begin{itemize}
-              \item Designed for Multi-Node GPU Cluster
+              \item Support Many-Core Heterogeneous Architecture
+                \begin{itemize}
+                  \item Multicore CPU with OpenMP
+                  \item GPU Accelerator with NVIDIA CUDA
+                  \item Inter Node with MPI
+                \end{itemize}
               \item User Friendly Interfaces
               \begin{itemize}
-                \item Header Only Library, 100\% Portable
+                \item Header Only Library, No Installation Needed
+                \item Full Documented
               \end{itemize}
               \item Good Extensibility and Maintainability
               \begin{itemize}
@@ -181,29 +191,46 @@
             \begin{itemize}
               \item Intel Xeon E5 2667 v2 3.3GHz * 2
               \item NVIDIA K40m GPU * 2
+              \item Interconnection with InfiniBand
             \end{itemize}
           \end{itemize}
 
           \paragraph{\textbf{Test Problems}}
           \begin{itemize}
+            \item Problems form Florida Matrix Collection
             \item Symmetric Positive Definite Matrices
-            \item Dimension from XXX to XXX
-            \item 2 Dimensional Poisson Problems
+            \item Dimensions of Matrices $>100,000$
           \end{itemize}
 
           \paragraph{\textbf{Factorization Time}} \\
-          123
+          \begin{center}
+            \includegraphics[width=0.8\onecolwid]{./Result_1.pdf}
+          \end{center}
 
           \paragraph{\textbf{Overall Scalability}} \\
-          123
+          \begin{center}
+            \includegraphics[width=0.8\onecolwid]{./Result_2.pdf}
+          \end{center}
 
         \end{block}
         % Conclusion block
-        \begin{block}{Conclusion}
+        \begin{block}{Conclusions}
+          \paragraph{\textbf{Conclusion}}
           \begin{itemize}
-            \item 123
-            \item 123
-            \item 123
+            \item Hierarchical Schur Method can solve large scale linear
+                  systems efficiently.
+            \item The overall scalability is bounded by the compute load
+                  balancing in each compute unit. It can be further
+                  improved by 
+            \begin{enumerate}
+              \item Better quality of nested dissection
+              \item Dynamic task scheduling
+            \end{enumerate}
+          \end{itemize}
+          \paragraph{\textbf{Future Works}}
+          \begin{itemize}
+            \item Non-symmetric matrix support
+            \item Support for OpenCL and Xeon Phi Devices
           \end{itemize}
         \end{block}
       \end{column}
